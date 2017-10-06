@@ -2,6 +2,8 @@ package com.gojek.parkinglot.core;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Class to create or init the parking lot. This will be singleton class as only once it will be
@@ -12,9 +14,12 @@ public class CreateParkingLot {
 
     private static volatile CreateParkingLot instance;
 
-    private List<Car> parkingSlots= null;
+    private Map<Integer, Car> parkingSlots= null;
+
+    private Integer numberOfSlots;
 
     private CreateParkingLot(int numberOfSlots){
+        this.numberOfSlots = numberOfSlots;
         initCarParkingSlots(numberOfSlots);
     }
 
@@ -50,7 +55,7 @@ public class CreateParkingLot {
      * @param numberOfSlots to be created
      * @return {@link CreateParkingLot} singleton instance of this class
      */
-    public static CreateParkingLot createParkingLot(int numberOfSlots){
+    public static CreateParkingLot createParkingLot(Integer numberOfSlots){
         return getInstance(numberOfSlots);
     }
 
@@ -59,14 +64,22 @@ public class CreateParkingLot {
      * @return the initial list of available slots
      */
     private void initCarParkingSlots(int numberOfSlots){
-        parkingSlots = new ArrayList<Car>(numberOfSlots);
+        parkingSlots = new TreeMap<Integer, Car>();
     }
 
     /**
      * Returns the parking slots
      * @return the available parking lots
      */
-    public List<Car> getParkingSlots() {
+    public Map<Integer, Car> getParkingSlots() {
         return parkingSlots;
+    }
+
+    /**
+     * Return the max number of slots available
+     * @return the max number of slots available
+     */
+    public Integer getNumberOfSlots(){
+        return this.numberOfSlots;
     }
 }

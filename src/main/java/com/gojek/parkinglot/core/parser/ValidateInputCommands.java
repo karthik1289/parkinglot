@@ -5,6 +5,8 @@ package com.gojek.parkinglot.core.parser;
  * @author Karthik
  */
 public final class ValidateInputCommands {
+
+    private static final String SPACE = " ";
     /**
      * Default private constructor
      */
@@ -20,14 +22,19 @@ public final class ValidateInputCommands {
         if(command == null || command.trim().length() == 0){
             return isValidCommand;
         }
-        String[] input = command.split(" ",-1);
+        String[] input = command.split(SPACE,-1);
         if(!ValidCommands.getValidCommands().contains(input[0])){
             System.out.println(input[0]+" is not a valid command");
             return false;
         }
         switch(ValidCommands.Commands.valueOf(input[0]).getValue()){
+            //create_parking_lot command
             case 0:{
                 isValidCommand = input.length == 2;
+                if(!isValidCommand){
+                    System.out.println("Need a Integer for creating parking slot");
+                    return false;
+                }
                 try {
                     Integer.parseInt(input[1]);
                 }
@@ -37,30 +44,39 @@ public final class ValidateInputCommands {
                 }
                 return isValidCommand;
             }
+            //park command
             case 1:{
-                isValidCommand = input.length == 3;
-                return isValidCommand;
+                return input.length == 3;
             }
+            //leave command
             case 2:{
                 isValidCommand = input.length == 2;
+                if(!isValidCommand){
+                    System.out.println("Need a Integer for creating parking slot");
+                    return false;
+                }
                 try {
                     Integer.parseInt(input[1]);
                 }
                 catch (NumberFormatException exception){
-                    System.out.println("Not a valid input format for command leave");
+                    System.out.println("Not a valid input format for command create_parking_lot");
                     return false;
                 }
                 return isValidCommand;
             }
+            //status command
             case 3:{
                 return input.length == 1;
             }
+            //registration_numbers_for_cars_with_colour command
             case 4:{
                 return input.length == 2;
             }
+            //slot_numbers_for_cars_with_colour command
             case 5:{
                 return input.length == 2;
             }
+            //slot_number_for_registration_number command
             case 6:{
                 return input.length == 2;
             }

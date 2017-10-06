@@ -1,6 +1,10 @@
 package com.gojek.parkinglot.core;
 
+import com.gojek.parkinglot.core.parser.CommandExecutor;
+import com.gojek.parkinglot.core.parser.ValidateInputCommands;
 import com.gojek.parkinglot.core.utils.StringUtils;
+
+import java.io.*;
 
 /**
  * Driver class for Parking Lot
@@ -9,6 +13,8 @@ import com.gojek.parkinglot.core.utils.StringUtils;
 public class ParkingLotDriver {
 
     private static String filePath;
+
+    private static final String SPACE = " ";
 
     /**
      * Driver method to parse input from command line and execute the respective functions
@@ -19,6 +25,7 @@ public class ParkingLotDriver {
         switch (args.length){
             case 0 : {
                 System.out.println("Interactive command shell will be invoked");
+                invokeInteractiveShell();
             }
             break;
             case 1 : {
@@ -33,5 +40,31 @@ public class ParkingLotDriver {
                     "anything for interactive command shell");
             }
         }
+    }
+
+    /**
+     * Method to run interactive shell
+     */
+    public static void invokeInteractiveShell(){
+        System.out.println("Please enter exit to quit");
+        for (;;) {
+            try {
+                BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
+                String command = bufferRead.readLine();
+                if (command.equalsIgnoreCase("exit")) {
+                    break;
+                } else if ((command == null) || (command.trim().length() == 0)) {
+                } else {
+                    if(ValidateInputCommands.isValidInputCommand(command)){
+                        String[] input = command.split(SPACE,-1);
+                        CommandExecutor.executeCommand(input);
+                    }
+                }
+            } catch(IOException e) {
+                System.out.println("Exception while reading from console");
+                e.printStackTrace();
+            }
+        }
+
     }
 }
