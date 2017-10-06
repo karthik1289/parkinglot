@@ -1,0 +1,56 @@
+# Project specific files
+*.releaseBackup
+_apps
+*.checkstyle
+release.properties
+vega-application-management/src/test/resources/flafka.config
+
+# Compiled files
+*.class
+
+# Package Files
+*.jar
+*.war
+*.ear
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+
+# Eclipse project files
+**/.classpath
+**/.project
+**/.settings/
+.project
+.settings/
+
+# IntelliJ IDEA project files
+.idea/
+*.iml
+
+# Maven target files
+target/
+**/target/
+
+# Derby log
+*.log
+metasore_db/
+**/metastore_db/
+
+# Other files
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+.elc
+auto-save-list
+tramp
+.\#*
+*.swp
+**/dependency-reduced-pom.xml
