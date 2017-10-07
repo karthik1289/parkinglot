@@ -32,6 +32,7 @@ public class CreateParkingLot {
             synchronized (CreateParkingLot.class) {
                 if (instance == null) {
                     instance = new CreateParkingLot(numberOfSlots);
+                    System.out.println("Created a parking lot with "+numberOfSlots+" slots");
                 }
             }
         }
