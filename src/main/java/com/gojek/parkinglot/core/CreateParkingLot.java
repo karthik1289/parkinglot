@@ -46,7 +46,6 @@ public class CreateParkingLot {
     public static CreateParkingLot getInstance(){
         if(instance == null){
             System.out.println("First create instance using createParkingLot(int) method");
-            System.exit(1);
         }
         return instance;
     }
