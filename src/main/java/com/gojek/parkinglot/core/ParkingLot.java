@@ -58,7 +58,6 @@ public class ParkingLot implements IParkingFunctions {
             Integer slot = emptySlot.iterator().next();
             parkingSlots.put(slot, new Car(registrationNumber, colour));
             System.out.println("Allocated slot number:"+slot);
-            System.out.println();
             emptySlot.remove(slot);
         }
     }
@@ -72,7 +71,6 @@ public class ParkingLot implements IParkingFunctions {
             parkingSlots.remove(slot);
             emptySlot.add(slot);
             System.out.println("Slot number "+slot+" is free");
-            System.out.println();
         }
         else {
             System.out.println("Invalid slot to leave parking");
@@ -87,7 +85,6 @@ public class ParkingLot implements IParkingFunctions {
         for(Map.Entry<Integer,Car> entry : parkingSlots.entrySet()){
             System.out.println(entry.getKey()+"\t"+entry.getValue().getCarNumber()+"\t"+
             entry.getValue().getColour());
-            System.out.println();
         }
     }
 
@@ -99,9 +96,9 @@ public class ParkingLot implements IParkingFunctions {
         for(Map.Entry<Integer, Car> entry : parkingSlots.entrySet()){
             if(entry.getValue().getColour().equalsIgnoreCase(colour)){
                 System.out.print(entry.getValue().getCarNumber()+", ");
-                System.out.println();
             }
         }
+        System.out.println();
     }
 
     /**
@@ -114,6 +111,7 @@ public class ParkingLot implements IParkingFunctions {
                 System.out.print(entry.getKey()+", ");
             }
         }
+        System.out.println();
     }
 
     /**
